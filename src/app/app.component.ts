@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { PartnerListComponent } from './components/partner-list/partner-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [PartnerListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
