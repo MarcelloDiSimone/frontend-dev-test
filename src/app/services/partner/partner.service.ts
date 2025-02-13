@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Partner } from '../types/partner.interface';
+import { Partner } from '../../types/partner.interface';
 import { faker } from '@faker-js/faker';
 import { GetPartnerOptions } from './get-partner-options.interface';
 import { SearchPartnersResult } from './search-partners-result.interface';

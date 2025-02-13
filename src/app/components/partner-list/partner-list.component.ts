@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PartnerService } from '../../services/partner.service';
+import { PartnerService } from '../../services/partner/partner.service';
 
 @Component({
   selector: 'app-partner-list',

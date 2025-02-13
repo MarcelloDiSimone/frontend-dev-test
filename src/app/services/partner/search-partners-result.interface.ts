@@ -1,4 +1,4 @@
-import { Partner } from '../types/partner.interface';
+import { Partner } from '../../types/partner.interface';
 
 export interface SearchPartnersResult {
   totalFound: number;
