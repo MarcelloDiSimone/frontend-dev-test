@@ -28,7 +28,7 @@ export class PartnerService {
   }
 
   private initPartners(): void {
-    for (let i = 0; i < 1_000; i++) {
+    for (let i = 0; i < 10_000; i++) {
       this.partners.push(this.generatePartner());
     }
   }
