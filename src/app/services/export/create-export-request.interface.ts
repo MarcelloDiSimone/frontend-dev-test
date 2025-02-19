@@ -1,13 +1,14 @@
-export type CreateExportRequest = AllSelected | ManualSelected;
+import { Partner } from '../../types/partner.interface';
 
+export type CreateExportRequest = AllSelected | ManualSelected;
 
 export interface AllSelected {
   allSelected: true;
   searchString: string;
-  deselectedIds: string;
+  deselectedIds: Partner[];
 }
 
 export interface ManualSelected {
   allSelected: false;
-  selectedIds: string;
+  selectedIds: Partner[];
 }
