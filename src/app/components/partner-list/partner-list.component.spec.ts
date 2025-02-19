@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { PartnerListComponent } from './partner-list.component';
 
 describe('PartnerListComponent', () => {
@@ -8,9 +9,9 @@ describe('PartnerListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PartnerListComponent]
-    })
-    .compileComponents();
+      imports: [PartnerListComponent],
+      providers: [provideNoopAnimations()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PartnerListComponent);
     component = fixture.componentInstance;
