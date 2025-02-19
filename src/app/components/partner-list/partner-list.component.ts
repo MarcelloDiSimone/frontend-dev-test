@@ -94,4 +94,12 @@ export class PartnerListComponent {
       selectedIds: [...this.selection.selected],
     });
   }
+
+  exportAll() {
+    this.exportService.createExport({
+      allSelected: true,
+      searchString: this.formGroup.controls.filterQuery.value || '',
+      deselectedIds: [],
+    });
+  }
 }

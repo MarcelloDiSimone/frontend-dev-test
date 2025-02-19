@@ -6,8 +6,11 @@
     </mat-form-field>
   </form>
 
+  <button mat-flat-button (click)="exportAll()">
+    <mat-icon>done_all</mat-icon> Export all
+  </button>
   <button mat-flat-button (click)="export()">
-    <mat-icon>save</mat-icon> Export selected
+    <mat-icon>check</mat-icon> Export selected
   </button>
 </header>
 <table mat-table matSort>
