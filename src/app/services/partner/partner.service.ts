@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Partner } from '../../types/partner.interface';
 import { faker } from '@faker-js/faker';
+import { Partner } from '../../types/partner.interface';
 import { GetPartnerOptions } from './get-partner-options.interface';
-import { SearchPartnersResult } from './search-partners-result.interface';
 import { defaultOptions } from './search-partners-default-options';
+import { SearchPartnersResult } from './search-partners-result.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PartnerService {
   private partners: Partner[] = [];
@@ -15,11 +15,21 @@ export class PartnerService {
     this.initPartners();
   }
 
-  public async searchPartners(options: Partial<GetPartnerOptions> = {}): Promise<SearchPartnersResult> {
+  public async searchPartners(
+    options: Partial<GetPartnerOptions> = {}
+  ): Promise<SearchPartnersResult> {
     const { searchString, take, skip } = { ...defaultOptions, ...options };
-    const matchingPartner = this.partners.filter(partner => {
+    let matchingPartner = this.partners.filter((partner) => {
       return partner.name.toLowerCase().includes(searchString.toLowerCase());
     });
+
+    if (options.sort) {
+      matchingPartner = this.sortResults(matchingPartner, options.sort);
+    }
+
+    if (options.sortDirection === 'desc') {
+      matchingPartner = matchingPartner.reverse();
+    }
 
     return {
       totalFound: matchingPartner.length,
@@ -28,17 +38,19 @@ export class PartnerService {
   }
 
   private initPartners(): void {
-    for (let i = 0; i < 10_000; i++) {
-      this.partners.push(this.generatePartner());
-    }
-  }
-
-  private generatePartner(): Partner {
-    return {
+    this.partners = Array.apply(null, Array(10_000)).map(() => ({
       id: faker.string.uuid(),
       name: faker.company.name(),
-    };
+    }));
+  }
+
+  private sortResults(arr: Partner[], name: string): Partner[] {
+    return arr.sort((a: Partner, b: Partner) => {
+      const fistValue = a[name as keyof Partner];
+      const secondValue = b[name as keyof Partner];
+      if (fistValue < secondValue) return -1;
+      if (fistValue > secondValue) return 1;
+      return 0;
+    });
   }
 }
-
-
